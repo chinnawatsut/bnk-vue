@@ -9,7 +9,17 @@ const routes = [
   {
     path: "/",
     name: "home",
-    component: Home
+    component: Home,
+    beforeEnter(to, from, next) {
+      let token = localStorage.getItem('token')
+      if (token) {
+        next()
+      } else {
+        next({
+          name: "signin"
+        })
+      }
+    }
   },
   {
     path: "/signin",
