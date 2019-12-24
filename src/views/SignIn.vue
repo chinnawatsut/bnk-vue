@@ -11,11 +11,12 @@
       <button v-on:click="login">login</button>
     </div>
     <div class="dang" v-if="errorMessage">{{errorMessage}}</div>
-    <router-link to="signup"> Sign Up </router-link>
+    <router-link to="signup">Sign Up</router-link>
   </div>
 </template>
 
 <script>
+import UserService from "../api/user.api";
 export default {
   // name: "signin",
   data() {
@@ -27,17 +28,16 @@ export default {
   },
   methods: {
     login() {
-      this.axios
-        .post("http://localhost:3000/auth/login", {
-          login: this.username,
-          password: this.password
+      UserService.SignIn({
+        login: this.username,
+        password: this.password
+      })
+        .then(response => {
+          localStorage.setItem("token", response.data.token);
+          this.$router.push({ path: "/" });
         })
-        .then((response) => {
-          localStorage.setItem('token', response.data.token)
-          this.$router.push({ path: '/'})
-        })
-        .catch((e) => {
-          this.errorMessage = e;
+        .catch(e => {
+          this.errorMessage = e.response.data;
         });
     }
   }

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import UserService from '../api/user.api'
 export default {
   data() {
     return {
@@ -21,18 +22,11 @@ export default {
   },
   methods: {
     fetchData() {
-      let token = localStorage.getItem("token");
-      this.axios
-        .get("http://localhost:3000/me", {
-          headers: {
-            Authorization: "Bearer " + token
-          }
-        })
+      UserService.GetProfile()
         .then(response => {
           this.profile = response.data;
         })
         .catch(e => {
-          console.log(e);
           this.errorMessage = e.response.data;
         });
     }
