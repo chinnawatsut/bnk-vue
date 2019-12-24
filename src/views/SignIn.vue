@@ -11,6 +11,7 @@
       <button v-on:click="login">login</button>
     </div>
     <div class="dang" v-if="errorMessage">{{errorMessage}}</div>
+    <router-link to="signup"> Sign Up </router-link>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <button v-on:click="logout">Logout</button>
+    <router-link to="/profile" >Profile</router-link>
     <!-- <img alt="Vue logo" src="../assets/logo.png" /> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App" /> -->
   </div>

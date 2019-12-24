@@ -2,29 +2,44 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import SignIn from "../views/SignIn.vue";
+import SignUp from "../views/SignUp.vue";
+import Profile from "../views/Profile.vue";
 
 Vue.use(VueRouter);
+
+function isAuthen(to, from, next) {
+  let token = localStorage.getItem('token')
+  if (token) {
+    next()
+  } else {
+    next({
+      name: "signin"
+    })
+  }
+}
 
 const routes = [
   {
     path: "/",
     name: "home",
     component: Home,
-    beforeEnter(to, from, next) {
-      let token = localStorage.getItem('token')
-      if (token) {
-        next()
-      } else {
-        next({
-          name: "signin"
-        })
-      }
-    }
+    beforeEnter: isAuthen
+  },
+  {
+    path: "/profile",
+    name: "profile",
+    component: Profile,
+    beforeEnter: isAuthen
   },
   {
     path: "/signin",
     name: "signin",
     component: SignIn
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: SignUp
   }
 ];
 
