@@ -5,9 +5,11 @@
     <div>
       <h2>Members</h2>
       <div v-for="(member,index) in members" :key="index">
-        <h2>{{member.name}}</h2>
-        <h3>IG: {{member.instagramId}}</h3>
-        <img :src="member.imgUrl" :alt="member.name" />
+        <router-link :to="`/bnk/${member._id}`">
+          <h2>{{member.name}}</h2>
+          <h3>IG: {{member.instagramId}}</h3>
+          <img :src="member.imgUrl" :alt="member.name" />
+        </router-link>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@ import Home from "../views/Home.vue";
 import SignIn from "../views/SignIn.vue";
 import SignUp from "../views/SignUp.vue";
 import Profile from "../views/Profile.vue";
-
+import MemberProfile from "../views/MemberProfile.vue"
 Vue.use(VueRouter);
 
 function isAuthen(to, from, next) {
@@ -40,6 +40,10 @@ const routes = [
     path: "/signup",
     name: "signup",
     component: SignUp
+  },
+  {
+    path: "/bnk/:id",
+    component: MemberProfile,
   }
 ];
 
