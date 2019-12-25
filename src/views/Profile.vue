@@ -1,8 +1,17 @@
 <template>
-  <div>
-    <h1>Profile</h1>
-    Name: {{ profile.display }}
-    <span v-show="errorMessage">{{ errorMessage }}</span>
+  <div class="row p-0">
+    <div class="card text-center mt-5 col-md-5 p-0">
+    <div class="card-header">
+      Profile
+    </div>
+    <div class="card-body">
+      <h5 class="card-title"> Name: {{ profile.display }}</h5>
+      <span v-show="errorMessage">{{ errorMessage }}</span> 
+    </div>
+    <div class="card-footer text-muted">
+      2 days ago
+    </div>
+  </div>
   </div>
 </template>
 
@@ -35,4 +44,7 @@ export default {
 </script>
 
 <style>
+.card {
+  margin: auto;
+}
 </style>

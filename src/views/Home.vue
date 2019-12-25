@@ -1,9 +1,9 @@
 <template>
   <div>
     <div class="pb-4">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-light d-flex flex-row-reverse">
-        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" v-on:click="logout">Logout</button>
-        <router-link class="pr-3" to="/profile">Profile</router-link>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse">
+        <button class="btn btn-outline-warning my-2 my-sm-0" type="submit" v-on:click="logout">Logout</button>
+        <router-link class="pr-3 text-light" to="/profile">Profile</router-link>
     </nav>
     </div>
     <h2>Members</h2>
@@ -68,5 +68,4 @@ img {
   margin: auto;
   width: 80%;  
 }
-
 </style>
