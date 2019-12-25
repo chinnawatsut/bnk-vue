@@ -1,6 +1,12 @@
 <template>
   <div>
     login
+
+    <div v-if="errors.length" class="dang">
+      <ul>
+        <li v-for="(e, index) in errors" :key="index">{{ e }}</li>
+      </ul>
+    </div>
     <form @submit.prevent="onSubmit">
       <label for="user">Username:</label>
       <input type="text" id="user" v-model="username" placeholder />
@@ -24,11 +30,18 @@ export default {
     return {
       username: "",
       password: "",
+      errors: [],
       errorMessage: ""
     };
   },
   methods: {
     onSubmit() {
+      if (!this.username || !this.password) {
+        if (!this.username) this.errors.push("Username is required.")
+        if (!this.password) this.errors.push("Password is required.")
+        return
+      }
+
       UserService.SignIn({
         login: this.username,
         password: this.password
