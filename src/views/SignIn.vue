@@ -1,15 +1,16 @@
 <template>
   <div>
     login
-    <div>
+    <form @submit.prevent="onSubmit">
       <label for="user">Username:</label>
       <input type="text" id="user" v-model="username" placeholder />
 
       <label for="password">Password:</label>
       <input type="password" id="password" v-model="password" placeholder />
 
-      <button v-on:click="login">login</button>
-    </div>
+      <button type="submit">login</button>
+    </form>
+
     <div class="dang" v-if="errorMessage">{{errorMessage}}</div>
     <router-link to="signup">Sign Up</router-link>
   </div>
@@ -27,7 +28,7 @@ export default {
     };
   },
   methods: {
-    login() {
+    onSubmit() {
       UserService.SignIn({
         login: this.username,
         password: this.password
