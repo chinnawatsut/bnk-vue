@@ -21,7 +21,7 @@
               <input type="password" id="password" v-model="password" class="form-control" placeholder="Password">
             </div>
              <div class="dang pt-3" v-if="errorMessage">{{errorMessage}}</div>
-            <button type="button" class="btn btn-primary mt-4" v-on:click="onSubmit">Log in</button>
+            <button type="submit" class="btn btn-primary mt-4">Log in</button>
           </form>
         </div>
         <div class="card-footer">
@@ -35,7 +35,6 @@
 <script>
 import UserService from "../api/user.api";
 export default {
-  // name: "signin",
   data() {
     return {
       username: "",
