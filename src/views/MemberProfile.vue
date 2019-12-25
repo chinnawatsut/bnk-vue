@@ -6,7 +6,12 @@
       </h5>
       <div class="card-body">
         <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
-        <h5 class="card-title pt-4">IG: {{profile.instagramId}}</h5>
+        <h5 class="card-title pt-4">
+          IG: 
+          <a :href="profile.instagramId | iglink" target="_blank">
+          {{profile.instagramId}}
+          </a>
+          </h5>
       </div>
       <router-link :to="`/bnk/${profile._id}/edit`" class="btn btn-primary">Edit</router-link>
       <button class="btn btn-danger" v-on:click="remove">Remove</button>
