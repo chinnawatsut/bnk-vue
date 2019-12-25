@@ -5,7 +5,7 @@
         <h5 class="card-header"><h1>{{ profile.name }}</h1></h5>
         <div class="card-body">
           <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top">
-          <h5 class="card-title pt-2">IG: {{profile.instagramId}}</h5>
+          <h5 class="card-title pt-4">IG: {{profile.instagramId}}</h5>
         </div>
       </div>
     </div>
