@@ -14,7 +14,9 @@
         <div class="card-body">
           <h5 class="card-title">{{member.name}}</h5>
           <p class="card-text">IG: {{member.instagramId}}</p>
-          <a :href="`/bnk/${member._id}`" class="btn btn-primary">See more...</a>
+          <router-link :to="`/bnk/${member._id}`" class="btn btn-primary">
+            See more...
+          </router-link>
         </div>
       </div>
     </div>

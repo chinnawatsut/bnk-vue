@@ -1,13 +1,15 @@
 <template>
   <div class="member-content">
     <div class="card">
-      <div class="card">
-        <h5 class="card-header"><h1>{{ profile.name }}</h1></h5>
-        <div class="card-body">
-          <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top">
-          <h5 class="card-title pt-4">IG: {{profile.instagramId}}</h5>
-        </div>
+      <h5 class="card-header">
+        <h1>{{ profile.name }}</h1>
+      </h5>
+      <div class="card-body">
+        <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
+        <h5 class="card-title pt-4">IG: {{profile.instagramId}}</h5>
       </div>
+      <router-link :to="`/bnk/${profile._id}/edit`" class="btn btn-primary">Edit</router-link>
+      <button class="btn btn-danger" v-on:click="remove">Remove</button>
     </div>
   </div>
 </template>
@@ -39,6 +41,16 @@ export default {
           console.log(err.response.data);
         }
       );
+    },
+    remove() {
+      BnkService.removeMember(this.$route.params.id).then(
+        response => {
+          this.$router.push({ path: `/` });
+        },
+        err => {
+          console.log(err.response.data);
+        }
+      );
     }
   }
 };
@@ -47,7 +59,7 @@ export default {
 <style scoped>
 img {
   width: 100%;
-  height: 500px;
+  height: 400px;
   object-fit: cover;
 }
 .member-content {

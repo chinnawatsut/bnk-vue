@@ -5,6 +5,7 @@ import SignIn from "../views/SignIn.vue";
 import SignUp from "../views/SignUp.vue";
 import Profile from "../views/Profile.vue";
 import MemberProfile from "../views/MemberProfile.vue"
+import EditMemberProfile from "../views/EditMemberProfile"
 Vue.use(VueRouter);
 
 function isAuthen(to, from, next) {
@@ -44,6 +45,10 @@ const routes = [
   {
     path: "/bnk/:id",
     component: MemberProfile,
+  },
+  {
+    path: "/bnk/:id/edit",
+    component: EditMemberProfile,
   }
 ];
 
