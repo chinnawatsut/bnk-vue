@@ -13,11 +13,11 @@
           </div>
           <form @submit.prevent="onSubmit">
             <div class="form-group form-content">
-              <label for="exampleInputEmail1">Username</label>
+              <label for="username">Username</label>
               <input type="text" id="user" class="form-control" placeholder="Username"  v-model="username" >
             </div>
             <div class="form-group form-content">
-              <label for="exampleInputPassword1">Password</label>
+              <label for="password">Password</label>
               <input type="password" id="password" v-model="password" class="form-control" placeholder="Password">
             </div>
              <div class="dang pt-3" v-if="errorMessage">{{errorMessage}}</div>

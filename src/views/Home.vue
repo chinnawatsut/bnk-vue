@@ -1,16 +1,23 @@
 <template>
-  <div class="home">
-    <button v-on:click="logout">Logout</button>
-    <router-link to="/profile">Profile</router-link>
-    <div>
-      <h2>Members</h2>
-      <div v-for="(member,index) in members" :key="index">
-        <router-link :to="`/bnk/${member._id}`">
-          <h2>{{member.name}}</h2>
-          <h3>IG: {{member.instagramId}}</h3>
-          <img :src="member.imgUrl" :alt="member.name" />
-        </router-link>
+  <div>
+    <div class="pb-4">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-light d-flex flex-row-reverse">
+        <button class="btn btn-outline-danger my-2 my-sm-0" type="submit" v-on:click="logout">Logout</button>
+        <router-link class="pr-3" to="/profile">Profile</router-link>
+    </nav>
+    </div>
+    <h2>Members</h2>
+    <div class="row home">
+    <div class="col-sm-4 pb-4" v-for="(member,index) in members" :key="index">
+      <div class="card">
+        <img :src="member.imgUrl" :alt="member.name" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{member.name}}</h5>
+          <p class="card-text">IG: {{member.instagramId}}</p>
+          <a :href="`/bnk/${member._id}`" class="btn btn-primary">See more...</a>
+        </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -53,7 +60,13 @@ export default {
 
 <style scoped>
 img {
-  width: 100px;
-  height: auto;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
+.home {
+  margin: auto;
+  width: 80%;  
+}
+
 </style>
