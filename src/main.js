@@ -4,9 +4,11 @@ import router from "./router";
 import store from "./store";
 import VueAxios from 'vue-axios'
 import http from './api/httpClient'
-
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.min.css';
 Vue.config.productionTip = false;
 Vue.use(VueAxios, http)
+Vue.use(BootstrapVue)
 
 new Vue({
   router,

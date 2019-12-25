@@ -1,24 +1,34 @@
 <template>
-  <div>
-    login
-
-    <div v-if="errors.length" class="dang">
-      <ul>
-        <li v-for="(e, index) in errors" :key="index">{{ e }}</li>
-      </ul>
-    </div>
-    <form @submit.prevent="onSubmit">
-      <label for="user">Username:</label>
-      <input type="text" id="user" v-model="username" placeholder />
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" v-model="password" placeholder />
-
-      <button type="submit">login</button>
-    </form>
-
-    <div class="dang" v-if="errorMessage">{{errorMessage}}</div>
-    <router-link to="signup">Sign Up</router-link>
+  <div class="container-fluid">
+     <div class="col-md-4 col-md-offset-5 form-content">
+      <div class="card text-center">
+      <div class="card-header">
+          <h4>Sign in</h4>
+        </div>
+        <div class="card-body">
+          <div v-if="errors.length" class="dang">
+            <ul>
+              <li v-for="(e, index) in errors" :key="index">{{ e }}</li>
+            </ul>
+          </div>
+          <form @submit.prevent="onSubmit">
+            <div class="form-group form-content">
+              <label for="exampleInputEmail1">Username</label>
+              <input type="text" id="user" class="form-control" placeholder="Username"  v-model="username" >
+            </div>
+            <div class="form-group form-content">
+              <label for="exampleInputPassword1">Password</label>
+              <input type="password" id="password" v-model="password" class="form-control" placeholder="Password">
+            </div>
+             <div class="dang pt-3" v-if="errorMessage">{{errorMessage}}</div>
+            <button type="button" class="btn btn-primary mt-4" v-on:click="onSubmit">Log in</button>
+          </form>
+        </div>
+        <div class="card-footer">
+          <router-link to="signup">Sign Up</router-link>
+        </div>
+      </div>
+     </div>
   </div>
 </template>
 
@@ -61,5 +71,19 @@ export default {
 <style scoped>
 .dang {
   color: red;
+}
+
+.form-content {
+  margin: auto;
+  text-align: left
+}
+
+h4 {
+  text-align: center;
+}
+
+.form-content {
+  text-align: left;
+  padding-top: 1rem;
 }
 </style>
