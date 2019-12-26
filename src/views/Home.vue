@@ -42,16 +42,15 @@
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
 import BnkService from "../api/bnk.api";
 import LocalStorageService from '../api/localStorage'
+import { fetchMemberMixin } from '../mixins/fetchMemberMixin'
 
 export default {
   name: "home",
   components: {
-    // HelloWorld
   },
+  mixins: [fetchMemberMixin],
   created() {
     this.getMember();
   },

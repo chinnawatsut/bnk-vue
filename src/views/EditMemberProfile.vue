@@ -58,34 +58,18 @@
 </template>
 <script>
 import BnkService from "../api/bnk.api";
+import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
+
 export default {
-  created() {
-    this.fetchUser();
-  },
+  mixins: [fetchMemberMixin],
   mounted() {},
   data() {
     return {
-      profile: {
-        _id: "",
-        name: "",
-        imgUrl: "",
-        instagramId: ""
-      },
       errors: [],
       errorMessage: ""
     };
   },
   methods: {
-    fetchUser() {
-      BnkService.getMember(this.$route.params.id).then(
-        response => {
-          this.profile = response.data;
-        },
-        err => {
-          console.log(err.response.data);
-        }
-      );
-    },
     onSubmit() {
       if (
         !this.profile.name ||

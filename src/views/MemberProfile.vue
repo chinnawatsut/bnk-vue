@@ -21,32 +21,15 @@
 
 <script>
 import BnkService from "../api/bnk.api";
+import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
+
 export default {
-  created() {
-    this.fetchUser();
-  },
+  mixins: [fetchMemberMixin],
   mounted() {},
   data() {
-    return {
-      profile: {
-        _id: "",
-        name: "",
-        imgUrl: "",
-        instagramId: ""
-      }
-    };
+    return {};
   },
   methods: {
-    fetchUser() {
-      BnkService.getMember(this.$route.params.id).then(
-        response => {
-          this.profile = response.data;
-        },
-        err => {
-          console.log(err.response.data);
-        }
-      );
-    },
     remove() {
       BnkService.removeMember(this.$route.params.id).then(
         response => {
