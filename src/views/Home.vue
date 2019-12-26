@@ -11,6 +11,9 @@
       </nav>
     </div>
     <h2>Members</h2>
+    <div v-if="errorMessage" class="dang">
+      {{ errorMessage }}
+    </div>
     <div class="row home">
       <div class="col-sm-4 pb-4" v-for="(member,index) in members" :key="index">
         <div class="card">
@@ -24,7 +27,10 @@
       </div>
       <div class="col-sm-4 pb-4">
         <div class="card">
-          <img src="https://lh3.googleusercontent.com/FIMC5WQ5HW4wuvko9w3UE86ICl3rcMPOEOb8C92CbdLPX0bzGXbh0jm9DDeuK-rTJN0" alt="">
+          <img
+            src="https://lh3.googleusercontent.com/FIMC5WQ5HW4wuvko9w3UE86ICl3rcMPOEOb8C92CbdLPX0bzGXbh0jm9DDeuK-rTJN0"
+            alt
+          />
           <div class="card-body">
             <router-link :to="`/bnk/create`" class="btn btn-success">New member</router-link>
           </div>
@@ -47,9 +53,11 @@ export default {
   created() {
     this.getMember();
   },
+  mounted() {},
   data() {
     return {
-      members: []
+      members: [],
+      errorMessage: ''
     };
   },
   methods: {
@@ -62,8 +70,8 @@ export default {
         .then(response => {
           this.members = response.data;
         })
-        .catch(e => {
-          this.errorMessage = e.response.data;
+        .catch(error => {
+          this.errorMessage = error.message;
         });
     }
   }
@@ -79,5 +87,8 @@ img {
 .home {
   margin: auto;
   width: 80%;
+}
+.dang {
+  color: red;
 }
 </style>
