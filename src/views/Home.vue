@@ -3,6 +3,7 @@
     <div class="pb-4">
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse">
         <button
+          id="logoutBtn"
           class="btn btn-outline-warning my-2 my-sm-0"
           type="submit"
           v-on:click="logout"
@@ -44,6 +45,7 @@
 // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue";
 import BnkService from "../api/bnk.api";
+import LocalStorageService from '../api/localStorage'
 
 export default {
   name: "home",
@@ -62,7 +64,7 @@ export default {
   },
   methods: {
     logout() {
-      localStorage.removeItem("token");
+      LocalStorageService.removeToken();
       this.$router.push({ path: "/signin" });
     },
     getMember() {

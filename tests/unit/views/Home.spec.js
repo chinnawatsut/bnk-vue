@@ -2,11 +2,15 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import VueRouter from 'vue-router';
 import Home from "@/views/Home.vue";
 import BnkService from '../../../src/api/bnk.api'
+import LocalStorageService from '../../../src/api/localStorage'
 import flushPromises from 'flush-promises'
 
 
 jest.mock('../../../src/api/bnk.api', () => ({
   getAllMembers: jest.fn()
+}))
+jest.mock('../../../src/api/localStorage', () => ({
+  removeToken: jest.fn()
 }))
 
 describe("Home.vue", () => {
@@ -28,6 +32,17 @@ describe("Home.vue", () => {
       router,
     });
   }
+  
+  function createWrapperWithMockMethod() {
+    const getMember = jest.fn()
+    return shallowMount(Home, {
+      localVue,
+      router,
+      method: {
+        getAllMembers: getMember
+      },
+    });
+  }
 
   beforeEach(() => {
     localVue = createLocalVue()
@@ -44,8 +59,9 @@ describe("Home.vue", () => {
       router,
       methods: {
         getMember
-      }
+      },
     });
+   
     expect(getMember).toHaveBeenCalled();
   });
 
@@ -73,4 +89,20 @@ describe("Home.vue", () => {
     expect(wrapper.vm.errorMessage).toEqual("cannot retrieve data")
   });
 
+  it("should call removeToken when click logout", () => {
+    const wrapper = createWrapperWithMockMethod()
+
+    wrapper.find('#logoutBtn').trigger('click')
+    
+    expect(LocalStorageService.removeToken).toHaveBeenCalled();
+  });
+
+  it("should route to sigin when click logout", () => {
+    const route = spyOn(router, 'push')
+    const wrapper = createWrapperWithMockMethod()
+
+    wrapper.find('#logoutBtn').trigger('click')
+
+    expect(route).toHaveBeenCalledWith({ path: "/signin" });
+  });
 });
