@@ -1,20 +1,7 @@
 <template>
   <div>
-    <div class="pb-4">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse">
-        <button
-          id="logoutBtn"
-          class="btn btn-outline-warning my-2 my-sm-0"
-          type="submit"
-          v-on:click="logout"
-        >Logout</button>
-        <router-link class="pr-3 text-light" to="/profile">Profile</router-link>
-      </nav>
-    </div>
     <h2>Members</h2>
-    <div v-if="errorMessage" class="dang">
-      {{ errorMessage }}
-    </div>
+    <div v-if="errorMessage" class="dang">{{ errorMessage }}</div>
     <div class="row home">
       <div class="col-sm-4 pb-4" v-for="(member,index) in members" :key="index">
         <div class="card">
@@ -43,14 +30,12 @@
 
 <script>
 import BnkService from "../api/bnk.api";
-import LocalStorageService from '../api/localStorage'
-import { fetchMemberMixin } from '../mixins/fetchMemberMixin'
+import LocalStorageService from "../api/localStorage";
 
 export default {
   name: "home",
   components: {
   },
-  mixins: [fetchMemberMixin],
   created() {
     this.getMember();
   },
@@ -58,14 +43,10 @@ export default {
   data() {
     return {
       members: [],
-      errorMessage: ''
+      errorMessage: ""
     };
   },
   methods: {
-    logout() {
-      LocalStorageService.removeToken();
-      this.$router.push({ path: "/signin" });
-    },
     getMember() {
       BnkService.getAllMembers()
         .then(response => {

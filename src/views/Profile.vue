@@ -9,7 +9,6 @@
       <span v-show="errorMessage">{{ errorMessage }}</span> 
     </div>
     <div class="card-footer text-muted">
-      2 days ago
     </div>
   </div>
   </div>
@@ -17,6 +16,7 @@
 
 <script>
 import UserService from '../api/user.api'
+
 export default {
   data() {
     return {

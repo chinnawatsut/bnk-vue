@@ -2,7 +2,6 @@ import { shallowMount, createLocalVue } from "@vue/test-utils";
 import VueRouter from 'vue-router';
 import Home from "@/views/Home.vue";
 import BnkService from '../../../src/api/bnk.api'
-import LocalStorageService from '../../../src/api/localStorage'
 import flushPromises from 'flush-promises'
 
 
@@ -89,20 +88,4 @@ describe("Home.vue", () => {
     expect(wrapper.vm.errorMessage).toEqual("cannot retrieve data")
   });
 
-  it("should call removeToken when click logout", () => {
-    const wrapper = createWrapperWithMockMethod()
-
-    wrapper.find('#logoutBtn').trigger('click')
-    
-    expect(LocalStorageService.removeToken).toHaveBeenCalled();
-  });
-
-  it("should route to sigin when click logout", () => {
-    const route = spyOn(router, 'push')
-    const wrapper = createWrapperWithMockMethod()
-
-    wrapper.find('#logoutBtn').trigger('click')
-
-    expect(route).toHaveBeenCalledWith({ path: "/signin" });
-  });
 });
