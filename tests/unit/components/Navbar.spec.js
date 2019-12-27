@@ -31,7 +31,7 @@ describe("Navbar.vue", () => {
 
  
   it("should call removeToken when click logout and route to signIn", async() => {
-    UserService.GetProfile.mockResolvedValue({ data: { profile: "john" }})
+    UserService.GetProfile.mockResolvedValue({ data: { display: "john" }})
 
     const route = spyOn(router, 'push')
     const wrapper = createWrapper()
