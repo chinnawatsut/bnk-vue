@@ -11,12 +11,18 @@
         Hi!
         <router-link class="pr-3 text-light" to="/profile">{{ profile.display }}</router-link>
       </span>
+
+      <router-link class="pr-3 text-light" to="/profile">
+        <span :class="[currentPage.includes('profile') ? activateClass: '']">Profile</span>
+      </router-link>
+      <router-link class="pr-3 text-light" to="/">
+        <span :class="[currentPage == '/' ? activateClass: '']">Home</span>
+      </router-link>
     </nav>
     <nav
       v-if="!profile"
       class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse"
-    >
-    </nav>
+    ></nav>
   </div>
 </template>
 
@@ -30,7 +36,8 @@ export default {
   },
   data() {
     return {
-      profile: null
+      profile: null,
+      activateClass: "active"
     };
   },
   methods: {
@@ -42,6 +49,11 @@ export default {
       let profile = await UserService.GetProfile().then(r => r.data);
       this.profile = profile;
     }
+  },
+  computed: {
+    currentPage() {
+      return this.$route.path;
+    }
   }
 };
 </script>
@@ -52,5 +64,15 @@ export default {
 }
 .profile-name {
   color: aliceblue;
+}
+.white {
+  color: aliceblue;
+}
+.active {
+  opacity: 1;
+  visibility: visible;
+  border-bottom: 10px solid aquamarine;
+  margin: 10px;
+  transition: all 0.50s;
 }
 </style>
