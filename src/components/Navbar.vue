@@ -1,6 +1,6 @@
 <template>
   <div class="pb-4">
-    <nav v-if="profile" class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse">
+    <nav v-if ="isContainProfile" class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse">
       <button
         id="logoutBtn"
         class="btn btn-outline-warning my-2 my-sm-0"
@@ -20,7 +20,7 @@
       </router-link>
     </nav>
     <nav
-      v-if="!profile"
+      v-if  ="!isContainProfile"
       class="navbar navbar-expand-lg navbar-dark bg-dark d-flex flex-row-reverse"
     ></nav>
   </div>
@@ -36,7 +36,9 @@ export default {
   },
   data() {
     return {
-      profile: null,
+      profile: {
+        display: ''
+      },
       activateClass: "active"
     };
   },
@@ -44,15 +46,28 @@ export default {
     logout() {
       LocalStorageService.removeToken();
       this.$router.push({ path: "/signin" });
+      this.profile = {};
     },
-    async getProfile() {
-      let profile = await UserService.GetProfile().then(r => r.data);
-      this.profile = profile;
+    getProfile() {
+      UserService.GetProfile().then(response => {
+        // not call when just login
+        this.profile = response.data;
+      })
+      .catch(error => {
+        let { data, status , statusText} = error.response;
+        if (status === 500) {
+          this.logout()
+          return
+        }
+      });
     }
   },
   computed: {
     currentPage() {
       return this.$route.path;
+    },
+    isContainProfile() {
+      return this.profile.display
     }
   }
 };
@@ -73,6 +88,6 @@ export default {
   visibility: visible;
   border-bottom: 10px solid aquamarine;
   margin: 10px;
-  transition: all 0.50s;
+  transition: all 0.5s;
 }
 </style>
