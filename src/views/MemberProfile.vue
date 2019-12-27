@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 img {
-  width: 100%;
+  width: auto;
   height: 400px;
   object-fit: cover;
 }
