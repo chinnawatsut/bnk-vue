@@ -2,7 +2,7 @@ import axios from 'axios'
 import LocalStorage from './localStorage'
 
 const httpClient = axios.create({
-  baseURL: 'http://localhost:3000',
+  baseURL: process.env.VUE_APP_BASE_ENDPOINT,
   timeout: 1000,
 });
 
