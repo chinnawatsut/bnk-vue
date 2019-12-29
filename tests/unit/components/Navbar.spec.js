@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import VueRouter from 'vue-router';
 import LocalStorageService from '../../../src/api/localStorage'
-import UserService from '../../../src/api/user.api'
+import UserAPI from '../../../src/api/user.api'
 import flushPromises from 'flush-promises'
 import Navbar from '@/components/Navbar'
 
@@ -31,7 +31,7 @@ describe("Navbar.vue", () => {
 
  
   it("should call removeToken when click logout and route to signIn", async() => {
-    UserService.GetProfile.mockResolvedValue({ data: { display: "john" }})
+    UserAPI.GetProfile.mockResolvedValue({ data: { display: "john" }})
 
     const route = spyOn(router, 'push')
     const wrapper = createWrapper()

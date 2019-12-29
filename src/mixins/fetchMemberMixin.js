@@ -1,4 +1,4 @@
-import BnkService from "../api/bnk.api";
+import BnkAPI from "../api/bnk.api";
 
 export const fetchMemberMixin = {
   created() {
@@ -16,7 +16,7 @@ export const fetchMemberMixin = {
   },
   methods: {
     fetchUser() {
-      BnkService.getMember(this.$route.params.id).then(
+      BnkAPI.getMember(this.$route.params.id).then(
         response => {
           this.profile = response.data;
         },

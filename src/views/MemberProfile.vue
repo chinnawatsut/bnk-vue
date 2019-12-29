@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import BnkService from "../api/bnk.api";
+import BnkAPI from "../api/bnk.api";
 import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
 
 export default {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     remove() {
-      BnkService.removeMember(this.$route.params.id).then(
+      BnkAPI.removeMember(this.$route.params.id).then(
         response => {
           this.$router.push({ path: `/` });
         },

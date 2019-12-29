@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import UserService from '../api/user.api'
+import UserAPI from '../api/user.api'
 
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
   },
   methods: {
     fetchData() {
-      UserService.GetProfile()
+      UserAPI.GetProfile()
         .then(response => {
           this.profile = response.data;
         })

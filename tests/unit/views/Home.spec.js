@@ -1,7 +1,7 @@
 import { shallowMount, createLocalVue } from "@vue/test-utils";
 import VueRouter from 'vue-router';
 import Home from "@/views/Home.vue";
-import BnkService from '../../../src/api/bnk.api'
+import BnkAPI from '../../../src/api/bnk.api'
 import flushPromises from 'flush-promises'
 
 
@@ -47,7 +47,7 @@ describe("Home.vue", () => {
     localVue = createLocalVue()
     localVue.use(VueRouter)
     router = new VueRouter()
-    BnkService.getAllMembers.mockClear();
+    BnkAPI.getAllMembers.mockClear();
   });
 
   it("should call get member when created", () => {
@@ -65,18 +65,18 @@ describe("Home.vue", () => {
   });
 
   it("should set member when it call getMember success", async () => {
-    BnkService.getAllMembers.mockResolvedValue(mockGetAllMembersSuccess)
+    BnkAPI.getAllMembers.mockResolvedValue(mockGetAllMembersSuccess)
 
     const wrapper = createWrapper();
 
     await flushPromises()
 
-    expect(BnkService.getAllMembers).toHaveBeenCalled()
+    expect(BnkAPI.getAllMembers).toHaveBeenCalled()
     expect(wrapper.vm.members.length).toEqual(1)
   });
 
   it("should set errorMessage when it call getMember failed", async () => {
-    BnkService.getAllMembers.mockImplementation(() => Promise.reject({
+    BnkAPI.getAllMembers.mockImplementation(() => Promise.reject({
       message: 'cannot retrieve data',
     }))
 
@@ -84,7 +84,7 @@ describe("Home.vue", () => {
 
     await flushPromises()
 
-    expect(BnkService.getAllMembers).toHaveBeenCalled()
+    expect(BnkAPI.getAllMembers).toHaveBeenCalled()
     expect(wrapper.vm.errorMessage).toEqual("cannot retrieve data")
   });
 

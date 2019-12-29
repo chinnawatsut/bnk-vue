@@ -57,7 +57,7 @@
   </div>
 </template>
 <script>
-import BnkService from "../api/bnk.api";
+import BnkAPI from "../api/bnk.api";
 import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
 
 export default {
@@ -83,7 +83,7 @@ export default {
         return;
       }
 
-      BnkService.updateMember(this.profile._id, this.profile).then(
+      BnkAPI.updateMember(this.profile._id, this.profile).then(
         response => {
           this.$router.push({ path: `/bnk/${this.profile._id}` });
         },

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import UserService from "../api/user.api";
+import UserAPI from "../api/user.api";
 import LocalStorageService from "../api/localStorage";
 
 export default {
@@ -49,7 +49,7 @@ export default {
       this.profile = {};
     },
     getProfile() {
-      UserService.GetProfile().then(response => {
+      UserAPI.GetProfile().then(response => {
         // not call when just login
         this.profile = response.data;
       })

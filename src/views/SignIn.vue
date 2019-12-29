@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import UserService from "../api/user.api";
+import UserAPI from "../api/user.api";
 export default {
   data() {
     return {
@@ -51,7 +51,7 @@ export default {
         return
       }
 
-      UserService.SignIn({
+      UserAPI.SignIn({
         login: this.username,
         password: this.password
       })

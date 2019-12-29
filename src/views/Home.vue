@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import BnkService from "../api/bnk.api";
+import BnkAPI from "../api/bnk.api";
 import LocalStorageService from "../api/localStorage";
 
 export default {
@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     getMember() {
-      BnkService.getAllMembers()
+      BnkAPI.getAllMembers()
         .then(response => {
           this.members = response.data;
         })

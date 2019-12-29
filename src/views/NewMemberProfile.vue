@@ -54,7 +54,7 @@
   </div>
 </template>
 <script>
-import BnkService from "../api/bnk.api";
+import BnkAPI from "../api/bnk.api";
 export default {
   created() {
   },
@@ -89,7 +89,7 @@ export default {
         imgUrl: this.profile.imgUrl,
         instagramId: this.profile.instagramId,
       }
-      BnkService.createMember(body).then(
+      BnkAPI.createMember(body).then(
         response => {
           this.$router.push({ path: `/` });
         },
