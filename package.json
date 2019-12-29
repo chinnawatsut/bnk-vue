@@ -16,6 +16,7 @@
     "bootstrap": "^4.4.1",
     "bootstrap-vue": "^2.1.0",
     "core-js": "^3.4.3",
+    "css-loader": "^3.4.0",
     "flush-promises": "^1.0.2",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
@@ -70,6 +71,9 @@
   ],
   "jest": {
     "preset": "@vue/cli-plugin-unit-jest",
-    "testMatch": ["<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))", "<rootDir>/**/*.spec.(js|jsx|ts|tsx)"]
+    "testMatch": [
+      "<rootDir>/(tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx))",
+      "<rootDir>/**/*.spec.(js|jsx|ts|tsx)"
+    ]
   }
 }

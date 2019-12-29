@@ -9,6 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import igfilter from './filter/IgFilter'
 Vue.config.productionTip = false;
 
+// import './assets/styles/home.css'
 
 Vue.filter('iglink', igfilter.iglink)
 

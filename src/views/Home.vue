@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Members</h2>
+    <h2 class="from-home-dot-css">Members</h2>
     <div v-if="errorMessage" class="dang">{{ errorMessage }}</div>
     <div class="row home">
       <div class="col-sm-4 pb-4" v-for="(member,index) in members" :key="index">
