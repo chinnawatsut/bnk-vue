@@ -6,10 +6,10 @@ import VueAxios from 'vue-axios'
 import http from './api/httpClient'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './assets/styles/style';
 import igfilter from './filter/IgFilter'
 Vue.config.productionTip = false;
 
-// import './assets/styles/home.css'
 
 Vue.filter('iglink', igfilter.iglink)
 
