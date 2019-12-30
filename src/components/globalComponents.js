@@ -1,12 +1,5 @@
-// declarations
-//
-// import Nabar from '@/components/Navbar.vue'
-// export default {
-//   'navbar': Nabar
-// }
+import Sloth from '@/components/Sloth'
 
-// to use in vue file
-// import globalComponents from ''
-// components :{
-//   ...globalComponents
-// }
+export default {
+  'sloth': Sloth
+}

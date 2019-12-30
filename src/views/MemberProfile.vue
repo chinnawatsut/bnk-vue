@@ -5,7 +5,9 @@
         <h1>{{ profile.name }}</h1>
       </h5>
       <div class="card-body">
+        <sloth>
         <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
+        </sloth>
         <h5 class="card-title pt-4">
           IG: 
           <a :href="profile.instagramId | iglink" target="_blank">
@@ -22,12 +24,16 @@
 <script>
 import BnkAPI from "../api/bnk.api";
 import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
+import globalComponents from "@/components/globalComponents.js"
 
 export default {
   mixins: [fetchMemberMixin],
   mounted() {},
   data() {
     return {};
+  },
+  components: {
+    ...globalComponents
   },
   methods: {
     remove() {
