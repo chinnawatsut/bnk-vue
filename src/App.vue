@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <navbar />
+    <navigation-bar />
     <router-view />
   </div>
 </template>
 <script>
-import Navbar from '@/components/Navbar'
+import Navbar from "@/components/Navbar";
 
 export default {
   components: {
-    Navbar,
+    "navigation-bar": Navbar
   }
-}
+};
 </script>
 
 <style lang="scss">

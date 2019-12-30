@@ -49,16 +49,29 @@
             <button type="submit" class="btn btn-primary mt-4">Update</button>
           </form>
         </div>
-        <!-- <div class="card-footer">
-          <router-link to="signup">Sign Up</router-link>
-        </div>-->
+      </div>
+    </div>
+    <div class="col-md-4 col-md-offset-5 form-content preview-box">
+      <h3>Previewer</h3>
+      <input type="text" class="form-control" v-model="customEndpoint" />
+      <div>
+        <span class="mode">Preview computed cahed:</span>
+        {{ igUrl }}
+      </div>
+      <div>
+        <span class="mode">Preview method:</span>
+        {{ igUrler(profile.instagramId) }}
+      </div>
+      <div v-bind:class="isValidate ? 'valid' : 'invalid' ">
+        <span class="mode">Preview Watch:</span>
+        {{ fullUrl }}
       </div>
     </div>
   </div>
 </template>
 <script>
 import BnkAPI from "../api/bnk.api";
-import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
+import { fetchMemberMixin } from "../mixins/fetchMemberMixin";
 
 export default {
   mixins: [fetchMemberMixin],
@@ -66,7 +79,10 @@ export default {
   data() {
     return {
       errors: [],
-      errorMessage: ""
+      errorMessage: "",
+      customEndpoint: "https://www.instagram.com",
+      fullUrl: "",
+      isValidate: true
     };
   },
   methods: {
@@ -91,6 +107,41 @@ export default {
           this.errorMessage = error.response.data;
         }
       );
+    },
+    igUrler(url) {
+      console.log("method igUrler");
+      return this.customEndpoint + "/" + url;
+    },
+    validURL(str) {
+      // reference
+      // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
+      var pattern = new RegExp(
+        "^(https?:\\/\\/)?" + // protocol
+        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+          "(\\#[-a-z\\d_]*)?$",
+        "i"
+      ); // fragment locator
+      return !!pattern.test(str);
+    }
+  },
+  computed: {
+    igUrl: function() {
+      console.log("computed igUrl");
+      return "https://www.instagram.com/" + this.profile.instagramId;
+    }
+    // igUrl: {
+    //  get: function () { }
+    //  set: function (newval) { }
+    // },
+  },
+  watch: {
+    customEndpoint: function(val) {
+      console.log("watch customEndpoint");
+      this.fullUrl = val + "/" + this.profile.instagramId;
+      this.isValidate = this.validURL(this.fullUrl);
     }
   }
 };
@@ -100,5 +151,18 @@ export default {
 .form-content {
   margin: auto;
   text-align: left;
+}
+.preview-box {
+  margin-top: 30px;
+}
+.mode {
+  color: #41b883;
+}
+
+.valid {
+  color: #5bc236;
+}
+.invalid {
+  color: #fa163f;
 }
 </style>
