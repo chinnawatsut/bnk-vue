@@ -29,10 +29,12 @@
 <script>
 import UserAPI from "../api/user.api";
 import LocalStorageService from "../api/localStorage";
+import bus from "../eventBus"
 
 export default {
   mounted() {
     this.getProfile();
+    bus.$on('on-siginin', this.getProfile)
   },
   data() {
     return {
@@ -49,6 +51,7 @@ export default {
       this.profile = {};
     },
     getProfile() {
+      console.log('getprofile')
       UserAPI.GetProfile().then(response => {
         // not call when just login
         this.profile = response.data;

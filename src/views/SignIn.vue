@@ -34,6 +34,7 @@
 
 <script>
 import UserAPI from "../api/user.api";
+import bus from "../eventBus"
 export default {
   data() {
     return {
@@ -58,6 +59,7 @@ export default {
         .then(response => {
           localStorage.setItem("token", response.data.token);
           this.$router.push({ path: "/" });
+          bus.$emit('on-siginin')
         })
         .catch(e => {
           this.errorMessage = e.response.data;

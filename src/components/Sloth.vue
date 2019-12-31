@@ -13,7 +13,10 @@
 export default {
   inheritAttrs: false,
   props: {
-    likeCount: Number,
+    likeCount: {
+      type: Number,
+      required: true,
+    },
   }
 };
 </script>
