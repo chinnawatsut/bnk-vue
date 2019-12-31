@@ -68,10 +68,10 @@
       </div>
     </div>
     <div>
-      <h3>Deep</h3>
+      <h3>Watch Deep</h3>
       <input type="text" v-model="infoTitle" />
       <input type="text" v-model="infoContext" />
-      <button @click="addInfo">add</button>
+      <button class="btn btn-primary" @click="addInfo">add</button>
       <ul>
         <li v-for="(info, index) in infos[0].data" :key="index">{{info.title }} - {{info.context }}</li>
       </ul>
