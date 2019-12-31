@@ -5,7 +5,7 @@
         <h1>{{ profile.name }}</h1>
       </h5>
       <div class="card-body">
-        <sloth>
+        <sloth v-on:like="addLike" :likeCount="counter">
         <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
         </sloth>
         <h5 class="card-title pt-4">
@@ -30,7 +30,9 @@ export default {
   mixins: [fetchMemberMixin],
   mounted() {},
   data() {
-    return {};
+    return {
+      counter: 0,
+    };
   },
   components: {
     ...globalComponents
@@ -45,6 +47,9 @@ export default {
           console.log(err.response.data);
         }
       );
+    },
+    addLike() {
+      this.counter++
     }
   }
 };
