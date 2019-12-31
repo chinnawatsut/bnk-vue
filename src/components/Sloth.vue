@@ -3,7 +3,7 @@
     <slot v-bind="$attrs"></slot>
     <span>
       {{ likeCount }}
-      <img class="heart-icon" src="@/assets/icons/heart.png"/>
+      <img class="heart-icon" v-bind:class="{ inactive: likeCount == 0 }" src="@/assets/icons/heart.png"/>
     </span>
 
   </div>
@@ -26,5 +26,7 @@ export default {
   width: 20px;
   height: auto;
 }
-
+.inactive {
+  filter: brightness(5) invert(1);
+}
 </style>
