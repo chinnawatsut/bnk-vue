@@ -1,6 +1,6 @@
 <template>
   <div class="sloth" v-on:click="$emit('like')">
-    <slot></slot>
+    <slot v-bind="$attrs"></slot>
     <span>
       {{ likeCount }}
       <img class="heart-icon" src="@/assets/icons/heart.png"/>
@@ -11,6 +11,7 @@
 
 <script>
 export default {
+  inheritAttrs: false,
   props: {
     likeCount: Number,
   }
