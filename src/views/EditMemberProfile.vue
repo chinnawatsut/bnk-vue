@@ -67,6 +67,15 @@
         {{ fullUrl }}
       </div>
     </div>
+    <div>
+      <h3>Deep</h3>
+      <input type="text" v-model="infoTitle" />
+      <input type="text" v-model="infoContext" />
+      <button @click="addInfo">add</button>
+      <ul>
+        <li v-for="(info, index) in infos[0].data" :key="index">{{info.title }} - {{info.context }}</li>
+      </ul>
+    </div>
   </div>
 </template>
 <script>
@@ -82,7 +91,12 @@ export default {
       errorMessage: "",
       customEndpoint: "https://www.instagram.com",
       fullUrl: "",
-      isValidate: true
+      isValidate: true,
+      infoTitle: "",
+      infoContext: "",
+      infos: [
+        { data: [] }
+      ]
     };
   },
   methods: {
@@ -125,6 +139,15 @@ export default {
         "i"
       ); // fragment locator
       return !!pattern.test(str);
+    },
+    customEndpointHandler() {
+      this.fullUrl = val + "/" + this.profile.instagramId;
+      this.isValidate = this.validURL(this.fullUrl);
+    },
+    addInfo() {
+      this.infos[0].data.push({ title: this.infoTitle, context: this.infoContext });
+      this.infoTitle = "";
+      this.infoContext = "";
     }
   },
   computed: {
@@ -142,7 +165,24 @@ export default {
       console.log("watch customEndpoint");
       this.fullUrl = val + "/" + this.profile.instagramId;
       this.isValidate = this.validURL(this.fullUrl);
+    },
+    // customEndpoint: {
+    //   immediate: true,
+    //   deep: true,
+    //   handler(val) {
+    //     this.fullUrl = val + "/" + this.profile.instagramId;
+    //     this.isValidate = this.validURL(this.fullUrl);
+    //   }
+    // }
+    infos: function() {
+      console.log("infos xx");
     }
+    // infos: {
+    //   deep: true,
+    //   handler(val) {
+    //     console.log("infos updated")
+    //   }
+    // }
   }
 };
 </script>
