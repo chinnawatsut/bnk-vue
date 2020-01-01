@@ -58,7 +58,7 @@ export default {
       })
         .then(response => {
           localStorage.setItem("token", response.data.token);
-          this.$router.push({ path: "/" });
+          this.$router.push({ name: "profile" });
           bus.$emit('on-siginin')
         })
         .catch(e => {
