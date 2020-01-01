@@ -6,7 +6,7 @@
       </h5>
       <div class="card-body">
         <sloth :alt="profile.name" v-on:like="addLike" :likeCount="counter">
-          <span slot="nickname">{{profile.name}}</span>
+          <span>{{profile.name}}</span>
           <img slot="imageProfile" :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
         </sloth>
         <h5 class="card-title pt-4">

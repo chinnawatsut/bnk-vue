@@ -1,7 +1,7 @@
 <template>
   <div class="sloth" v-on:click="$emit('like')">
     <slot name="imageProfile" v-bind="$attrs"></slot>
-    <slot name="nickname"></slot>
+    <slot></slot>
     <span>
       <img class="heart-icon" v-bind:class="{ inactive: likeCount == 0 }" src="@/assets/icons/heart.png"/>
       {{ likeCount }}
