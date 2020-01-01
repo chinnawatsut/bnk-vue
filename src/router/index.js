@@ -49,8 +49,9 @@ const routes = [
     component: NewMemberProfile,
   },
   {
-    path: "/bnk/:id/edit",
+    path: "/bnk/:userid/edit",
     component: EditMemberProfile,
+    props: true,
   },
   {
     path: "/bnk/:id",

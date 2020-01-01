@@ -79,25 +79,26 @@
   </div>
 </template>
 <script>
-import BnkAPI from "../api/bnk.api";
-import { fetchMemberMixin } from "../mixins/fetchMemberMixin";
+import BnkAPI from '../api/bnk.api'
+import { fetchMemberMixin } from '../mixins/fetchMemberMixin'
 
 export default {
   mixins: [fetchMemberMixin],
-  mounted() {},
+  props: ['userid'],
+  mounted() {
+    console.log(this.userid)
+  },
   data() {
     return {
       errors: [],
-      errorMessage: "",
-      customEndpoint: "https://www.instagram.com",
-      fullUrl: "",
+      errorMessage: '',
+      customEndpoint: 'https://www.instagram.com',
+      fullUrl: '',
       isValidate: true,
-      infoTitle: "",
-      infoContext: "",
-      infos: [
-        { data: [] }
-      ]
-    };
+      infoTitle: '',
+      infoContext: '',
+      infos: [{ data: [] }]
+    }
   },
   methods: {
     onSubmit() {
@@ -106,54 +107,57 @@ export default {
         !this.profile.imgUrl ||
         !this.profile.instagramId
       ) {
-        if (!this.profile.name) this.errors.push("Name is required.");
-        if (!this.profile.imgUrl) this.errors.push("Image Url is required.");
+        if (!this.profile.name) this.errors.push('Name is required.')
+        if (!this.profile.imgUrl) this.errors.push('Image Url is required.')
         if (!this.profile.instagramId)
-          this.errors.push("InstagramID is required.");
-        return;
+          this.errors.push('InstagramID is required.')
+        return
       }
 
       BnkAPI.updateMember(this.profile._id, this.profile).then(
         response => {
-          this.$router.push({ path: `/bnk/${this.profile._id}` });
+          this.$router.push({ path: `/bnk/${this.profile._id}` })
         },
         error => {
-          this.errorMessage = error.response.data;
+          this.errorMessage = error.response.data
         }
-      );
+      )
     },
     igUrler(url) {
-      console.log("method igUrler");
-      return this.customEndpoint + "/" + url;
+      console.log('method igUrler')
+      return this.customEndpoint + '/' + url
     },
     validURL(str) {
       // reference
       // https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url
       var pattern = new RegExp(
-        "^(https?:\\/\\/)?" + // protocol
-        "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
-        "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
-        "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
-        "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
-          "(\\#[-a-z\\d_]*)?$",
-        "i"
-      ); // fragment locator
-      return !!pattern.test(str);
+        '^(https?:\\/\\/)?' + // protocol
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+          '(\\#[-a-z\\d_]*)?$',
+        'i'
+      ) // fragment locator
+      return !!pattern.test(str)
     },
     customEndpointHandler() {
-      this.fullUrl = val + "/" + this.profile.instagramId;
-      this.isValidate = this.validURL(this.fullUrl);
+      this.fullUrl = val + '/' + this.profile.instagramId
+      this.isValidate = this.validURL(this.fullUrl)
     },
     addInfo() {
-      this.infos[0].data.push({ title: this.infoTitle, context: this.infoContext });
-      this.infoTitle = "";
-      this.infoContext = "";
+      this.infos[0].data.push({
+        title: this.infoTitle,
+        context: this.infoContext
+      })
+      this.infoTitle = ''
+      this.infoContext = ''
     }
   },
   computed: {
     igUrl: function() {
-      console.log("computed igUrl");
-      return "https://www.instagram.com/" + this.profile.instagramId;
+      console.log('computed igUrl')
+      return 'https://www.instagram.com/' + this.profile.instagramId
     }
     // igUrl: {
     //  get: function () { }
@@ -162,9 +166,9 @@ export default {
   },
   watch: {
     customEndpoint: function(val) {
-      console.log("watch customEndpoint");
-      this.fullUrl = val + "/" + this.profile.instagramId;
-      this.isValidate = this.validURL(this.fullUrl);
+      console.log('watch customEndpoint')
+      this.fullUrl = val + '/' + this.profile.instagramId
+      this.isValidate = this.validURL(this.fullUrl)
     },
     // customEndpoint: {
     //   immediate: true,
@@ -175,7 +179,7 @@ export default {
     //   }
     // }
     infos: function() {
-      console.log("infos xx");
+      console.log('infos xx')
     }
     // infos: {
     //   deep: true,
@@ -184,7 +188,7 @@ export default {
     //   }
     // }
   }
-};
+}
 </script>
 
 <style scoped>
