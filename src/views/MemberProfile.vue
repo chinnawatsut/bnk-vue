@@ -6,14 +6,13 @@
       </h5>
       <div class="card-body">
         <sloth :alt="profile.name" v-on:like="addLike" :likeCount="counter">
-        <img :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
+          <span slot="nickname">{{profile.name}}</span>
+          <img slot="imageProfile" :src="profile.imgUrl" :alt="profile.name" class="card-img-top" />
         </sloth>
         <h5 class="card-title pt-4">
-          IG: 
-          <a :href="profile.instagramId | iglink" target="_blank">
-          {{profile.instagramId}}
-          </a>
-          </h5>
+          IG:
+          <a :href="profile.instagramId | iglink" target="_blank">{{profile.instagramId}}</a>
+        </h5>
       </div>
       <router-link :to="`/bnk/${profile._id}/edit`" class="btn btn-primary">Edit</router-link>
       <button class="btn btn-danger" v-on:click="remove">Remove</button>
@@ -22,17 +21,17 @@
 </template>
 
 <script>
-import BnkAPI from "../api/bnk.api";
-import { fetchMemberMixin } from "../mixins/fetchMemberMixin"
-import globalComponents from "@/components/globalComponents.js"
+import BnkAPI from '../api/bnk.api'
+import { fetchMemberMixin } from '../mixins/fetchMemberMixin'
+import globalComponents from '@/components/globalComponents.js'
 
 export default {
   mixins: [fetchMemberMixin],
   mounted() {},
   data() {
     return {
-      counter: 0,
-    };
+      counter: 0
+    }
   },
   components: {
     ...globalComponents
@@ -41,18 +40,18 @@ export default {
     remove() {
       BnkAPI.removeMember(this.$route.params.id).then(
         response => {
-          this.$router.push({ path: `/` });
+          this.$router.push({ path: `/` })
         },
         err => {
-          console.log(err.response.data);
+          console.log(err.response.data)
         }
-      );
+      )
     },
     addLike() {
       this.counter++
     }
   }
-};
+}
 </script>
 
 <style scoped>

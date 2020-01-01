@@ -1,11 +1,12 @@
 <template>
   <div class="sloth" v-on:click="$emit('like')">
-    <slot v-bind="$attrs"></slot>
+    <slot name="imageProfile" v-bind="$attrs"></slot>
+    <slot name="nickname"></slot>
     <span>
-      {{ likeCount }}
       <img class="heart-icon" v-bind:class="{ inactive: likeCount == 0 }" src="@/assets/icons/heart.png"/>
+      {{ likeCount }}
     </span>
-
+    
   </div>
 </template>
 
@@ -22,12 +23,14 @@ export default {
 </script>
 
 <style scoped>
+
 .sloth {
   border: 5px solid #BCD0CD;
 }
 .heart-icon {
   width: 20px;
   height: auto;
+  margin-left: 20px;
 }
 .inactive {
   filter: brightness(5) invert(1);
