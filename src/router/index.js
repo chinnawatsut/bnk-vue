@@ -16,7 +16,12 @@ const routes = [
     name: "home",
     component: Home,
     meta: { isAuth: true, }
-
+  },
+  {
+    path: "/list",
+    name: "list",
+    component: Home,
+    meta: { isAuth: true, }
   },
   {
     path: "/profile",

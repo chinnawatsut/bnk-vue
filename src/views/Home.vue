@@ -55,7 +55,7 @@ export default {
         .catch(error => {
           this.errorMessage = error.message;
         });
-    }
+    },
   }
 };
 </script>

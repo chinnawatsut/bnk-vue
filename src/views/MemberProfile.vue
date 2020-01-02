@@ -30,7 +30,10 @@ import globalComponents from '@/components/globalComponents.js'
 
 export default {
   mixins: [fetchMemberMixin],
-  mounted() {},
+  created() {
+  },
+  mounted() {
+  },
   data() {
     return {
       counter: 0
