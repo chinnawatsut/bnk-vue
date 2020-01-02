@@ -9,7 +9,8 @@ jest.mock('../../../src/api/user.api', () => ({
   GetProfile: jest.fn()
 }))
 jest.mock('../../../src/api/localStorage', () => ({
-  removeToken: jest.fn()
+  removeToken: jest.fn(),
+  getToken: jest.fn().mockReturnValue(true),
 }))
 
 describe("Navbar.vue", () => {

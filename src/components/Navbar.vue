@@ -33,7 +33,9 @@ import bus from "../eventBus"
 
 export default {
   mounted() {
-    this.getProfile();
+    if (LocalStorageService.getToken()) {
+      this.getProfile();
+    }
     bus.$on('on-siginin', this.getProfile)
   },
   data() {
@@ -51,7 +53,7 @@ export default {
       this.profile = {};
     },
     getProfile() {
-      console.log('getprofile')
+      // console.log('getprofile')
       UserAPI.GetProfile().then(response => {
         // not call when just login
         this.profile = response.data;
